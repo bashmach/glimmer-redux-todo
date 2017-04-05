@@ -1,0 +1,17 @@
+{
+  "name": "glimmer-todo",
+  "description": "A brand new Glimmer app.",
+  "main": "",
+  "authors": [
+    "Pavel Machekhin <pavel.machekhin@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/bashmach/glimmer-todo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
