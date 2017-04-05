@@ -18,10 +18,13 @@
     "@glimmer/resolver": "^0.3.0",
     "ember-cli": "2.12.1",
     "ember-cli-inject-live-reload": "^1.6.1",
+    "todomvc-app-css": "^2.1.0",
+    "todomvc-common": "^1.0.3",
     "typescript": "^2.2.2"
   },
   "engines": {
     "node": ">= 4.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }
