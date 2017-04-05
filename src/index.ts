@@ -14,6 +14,6 @@ app.registerInitializer({
   }
 });
 
-app.renderComponent('glimmer-todo', containerElement, null);
+app.renderComponent('todo-app', containerElement, null);
 
 app.boot();
