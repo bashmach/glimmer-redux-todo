@@ -1,7 +1,8 @@
 # glimmer-todo
 
-This README outlines the details of collaborating on this Glimmer application.
-A short introduction of this app could easily go here.
+Example of todo app written with Glimmer.
+
+[Demo link](https://glimmer-todo.herokuapp.com/)
 
 ## Prerequisites
 
