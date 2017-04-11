@@ -2,8 +2,7 @@ import Component, { tracked } from '@glimmer/component';
 
 export default class TodoInput extends Component {
   @tracked args: { status };
-
-  status: string;
+  @tracked status: string;
 
   constructor(options) {
     super(options);

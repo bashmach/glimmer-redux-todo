@@ -3,7 +3,7 @@ import Component, { tracked } from '@glimmer/component';
 export default class TodoListItem extends Component {
   args: { item };
 
-  item: { text: boolean, isDone: boolean };
+  @tracked item: { text: string, isDone: boolean };
 
   constructor(options) {
     super(options);
