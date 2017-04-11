@@ -1,0 +1,5 @@
+<ul class="todo-list">
+  {{#each items key="@index" as |item|}}
+    <todo-list-item @item={{item}} />
+  {{/each}}
+</ul>

@@ -1,26 +1,18 @@
 import Component, { tracked } from '@glimmer/component';
 
 export default class TodoInput extends Component {
-  className: string;
-  placeholder: string;
+  @tracked args: { status };
 
-  @tracked status: string;
+  status: string;
 
   constructor(options) {
     super(options);
 
     this.status = this.args.status || 'default';
-
-    this.className = this.getClassNameBindings();
-    this.placeholder = this.getPlaceholder();
   }
 
-  didUpdate() {
-    this.className = this.getClassNameBindings();
-    this.placeholder = this.getPlaceholder();
-  }
-
-  getPlaceholder() {
+  @tracked('status')
+  get placeholder() {
     if (this.status === 'new') {
       return 'What needs to be done?';
     }
@@ -28,7 +20,8 @@ export default class TodoInput extends Component {
     return null;
   }
 
-  getClassNameBindings() {
+  @tracked('status')
+  get className() {
     if (this.status === 'new') {
       return 'new-todo';
     }
