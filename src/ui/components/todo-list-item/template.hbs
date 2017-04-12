@@ -1,7 +1,7 @@
-<li class={{className}}>
-  <input type="checkbox" class="toggle">
+<li class={{if @isDone "view completed" "view"}}>
+  <input type="checkbox" class="toggle" checked={{@isDone}} onchange={{action @onToggle}}>
 
-  <label>{{item.text}}</label>
+  <label>{{@text}}</label>
 
   <button class="destroy"></button>
 </li>
