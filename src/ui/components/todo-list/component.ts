@@ -31,4 +31,11 @@ export default class TodoList extends Component {
       isDone: item.id === id ? !item.isDone : item.isDone
     }));
   };
+
+  onToggleAll(e) {
+    this.items = this.items.map(item => ({
+      ...item,
+      isDone: e.currentTarget.checked
+    }));
+  }
 };

@@ -1,5 +1,10 @@
-<ul class="todo-list">
-  {{#each items key="@index" as |item|}}
-    <todo-list-item @text={{item.text}} @isDone={{item.isDone}} @onToggle={{action onToggle item}} />
-  {{/each}}
-</ul>
+<section class="main">
+  <input type="checkbox" id="toggle-all" class="toggle-all" onchange={{action onToggleAll }}>
+  <label for="toggle-all">Mark all as complete</label>
+
+  <ul class="todo-list">
+    {{#each items key="@index" as |item|}}
+      <todo-list-item @text={{item.text}} @isDone={{item.isDone}} @onToggle={{action onToggle item}} />
+    {{/each}}
+  </ul>
+</section>
