@@ -38,4 +38,8 @@ export default class TodoList extends Component {
       isDone: e.currentTarget.checked
     }));
   }
+
+  onDestroy({ id }) {
+    this.items = this.items.filter(item => item.id !== id);
+  }
 };

@@ -4,7 +4,12 @@
 
   <ul class="todo-list">
     {{#each items key="@index" as |item|}}
-      <todo-list-item @text={{item.text}} @isDone={{item.isDone}} @onToggle={{action onToggle item}} />
+      <todo-list-item
+        @text={{item.text}}
+        @isDone={{item.isDone}}
+        @onToggle={{action onToggle item}}
+        @onDestroy={{action onDestroy item}}
+      />
     {{/each}}
   </ul>
 </section>
