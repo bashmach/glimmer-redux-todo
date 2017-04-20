@@ -42,4 +42,17 @@ export default class TodoList extends Component {
   onDestroy({ id }) {
     this.items = this.items.filter(item => item.id !== id);
   }
+
+  addItem(text) {
+    const { id: lastItemId } = [...this.items].pop();
+
+    this.items = [
+      ...this.items,
+      {
+        id: lastItemId + 1,
+        text,
+        isDone: false
+      }
+    ]
+  }
 };

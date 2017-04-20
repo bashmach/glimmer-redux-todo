@@ -1,3 +1,5 @@
+<todo-input @status="new" @onSubmit={{action addItem}} />
+
 <section class="main">
   <input type="checkbox" id="toggle-all" class="toggle-all" onchange={{action onToggleAll }}>
   <label for="toggle-all">Mark all as complete</label>
