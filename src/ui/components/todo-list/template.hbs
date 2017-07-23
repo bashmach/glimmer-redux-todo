@@ -1,4 +1,6 @@
-<todo-input @status="new" @onSubmit={{action addItem}} />
+<header>
+  <todo-input @status="new" @onSubmit={{action addItem}} />
+</header>
 
 <section class="main">
   <input type="checkbox" id="toggle-all" class="toggle-all" onchange={{action onToggleAll }}>

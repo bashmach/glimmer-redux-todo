@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Glimmer Todo App",
   "scripts": {
-    "build": "ember build",
+    "build": "ember build -e production",
     "start": "ember server",
     "test": "ember test"
   },
@@ -22,9 +22,9 @@
     "ember-cli-sass": "^6.2.0",
     "ember-cli-uglify": "^2.0.0-beta.1",
     "github-fork-ribbon-css": "^0.2.1",
+    "qunitjs": "^2.3.3",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.3",
-    "qunitjs": "^2.3.3",
     "typescript": "^2.4.2"
   },
   "engines": {
