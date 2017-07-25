@@ -27,8 +27,6 @@ export default class TodoList extends Component {
         isDone: false,
       }
     ];
-
-    this.store = this.args.store;
   }
 
   onToggle ({ id }) {
@@ -37,7 +35,7 @@ export default class TodoList extends Component {
       isDone: item.id === id ? !item.isDone : item.isDone
     }));
 
-    this.store.dispatch({
+    this.args.store.dispatch({
       type: 'ADD',
     });
   };
