@@ -1,6 +1,10 @@
 import Component, { tracked } from '@glimmer/component';
 
 export default class TodoList extends Component {
+  args: {
+    store: any
+  };
+
   @tracked items: { id: number, text: string, isDone: boolean }[];
 
   constructor(options) {
@@ -23,6 +27,8 @@ export default class TodoList extends Component {
         isDone: false,
       }
     ];
+
+    this.store = this.args.store;
   }
 
   onToggle ({ id }) {
@@ -30,6 +36,10 @@ export default class TodoList extends Component {
       ...item,
       isDone: item.id === id ? !item.isDone : item.isDone
     }));
+
+    this.store.dispatch({
+      type: 'ADD',
+    });
   };
 
   onToggleAll(e) {
