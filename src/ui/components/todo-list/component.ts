@@ -1,10 +1,7 @@
 import Component, { tracked } from '@glimmer/component';
+import store from '../../../utils/store';
 
 export default class TodoList extends Component {
-  args: {
-    store: any
-  };
-
   @tracked items: { id: number, text: string, isDone: boolean }[];
 
   constructor(options) {
@@ -35,7 +32,7 @@ export default class TodoList extends Component {
       isDone: item.id === id ? !item.isDone : item.isDone
     }));
 
-    this.args.store.dispatch({
+    store.dispatch({
       type: 'ADD',
     });
   };

@@ -1,18 +1,15 @@
 import Component, { tracked } from '@glimmer/component';
+import store from '../../../utils/store';
 
 export default class TodoHeader extends Component {
-    args: {
-        store: any
-    };
-
     @tracked
     state: number = 0;
 
     constructor(options: object) {
         super(options);
 
-        this.args.store.subscribe(() => {
-            this.state = this.args.store.getState();
+        store.subscribe(() => {
+            this.state = store.getState();
         });
     }
 
