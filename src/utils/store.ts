@@ -1,8 +1,9 @@
 import { createStore, compose } from 'redux';
 
 import reducer from './reducer';
+import { IState } from './todo';
 
-const initialState = 0;
+const initialState: IState = [];
 
 const store = createStore(
     reducer,

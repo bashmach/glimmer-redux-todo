@@ -24,6 +24,7 @@
     "github-fork-ribbon-css": "^0.2.1",
     "qunitjs": "^2.3.3",
     "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.0",
@@ -35,5 +36,6 @@
   "engines": {
     "node": ">= 6.10.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }

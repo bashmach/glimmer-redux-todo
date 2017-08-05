@@ -1,20 +1,9 @@
-import Component, { tracked } from '@glimmer/component';
-import store from '../../../utils/store';
+import { tracked } from '@glimmer/component';
+import StateComponent from '../state-component/component';
 
-export default class TodoHeader extends Component {
-    @tracked
-    state: number = 0;
-
-    constructor(options: object) {
-        super(options);
-
-        store.subscribe(() => {
-            this.state = store.getState();
-        });
-    }
-
+export default class TodoHeader extends StateComponent {
     @tracked('state')
     get counter() {
-        return this.state;
+        return this.state.length;
     }
 };

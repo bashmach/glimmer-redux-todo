@@ -1,63 +1,28 @@
-import Component, { tracked } from '@glimmer/component';
+import { tracked } from '@glimmer/component';
+import StateComponent from '../state-component/component';
 import store from '../../../utils/store';
 
-export default class TodoList extends Component {
-  @tracked items: { id: number, text: string, isDone: boolean }[];
+import { addTodo, deleteTodo, completeTodo, completeAll } from '../../../utils/actions';
 
-  constructor(options) {
-    super(options);
-
-    this.items = [
-      {
-        id: 1,
-        text: "Learn TypeScript",
-        isDone: false,
-      },
-      {
-        id: 2,
-        text: "Try Glimmer",
-        isDone: false,
-      },
-      {
-        id: 3,
-        text: "Build example todo app",
-        isDone: false,
-      }
-    ];
-  }
-
-  onToggle ({ id }) {
-    this.items = this.items.map(item => ({
-      ...item,
-      isDone: item.id === id ? !item.isDone : item.isDone
-    }));
-
-    store.dispatch({
-      type: 'ADD',
-    });
+export default class TodoList extends StateComponent {
+  onToggle (todo) {
+    return store.dispatch(completeTodo(todo));
   };
 
   onToggleAll(e) {
-    this.items = this.items.map(item => ({
-      ...item,
-      isDone: e.currentTarget.checked
-    }));
+    return store.dispatch(completeAll());
   }
 
-  onDestroy({ id }) {
-    this.items = this.items.filter(item => item.id !== id);
+  onDestroy(todo) {
+    return store.dispatch(deleteTodo(todo));
   }
 
   addItem(text) {
-    const { id: lastItemId } = [...this.items].pop();
+    return store.dispatch(addTodo(text));
+  }
 
-    this.items = [
-      ...this.items,
-      {
-        id: lastItemId + 1,
-        text,
-        isDone: false
-      }
-    ]
+  @tracked('state')
+  get items() {
+    return this.state;
   }
 };
