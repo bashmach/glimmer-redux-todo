@@ -1,9 +1,8 @@
 import Component, { tracked } from '@glimmer/component';
 import store from '../../../utils/store';
-import { IState } from "../../../utils/todo";
 
 export default class StateComponent extends Component {
-    @tracked state: IState;
+    @tracked state;
 
     constructor(options: object) {
         super(options);

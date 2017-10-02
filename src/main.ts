@@ -4,13 +4,13 @@ import moduleMap from '../config/module-map';
 import resolverConfiguration from '../config/resolver-configuration';
 
 export default class App extends Application {
-  constructor() {
-    let moduleRegistry = new BasicModuleRegistry(moduleMap);
-    let resolver = new Resolver(resolverConfiguration, moduleRegistry);
+    constructor() {
+        let moduleRegistry = new BasicModuleRegistry(moduleMap);
+        let resolver = new Resolver(resolverConfiguration, moduleRegistry);
 
-    super({
-      rootName: resolverConfiguration.app.rootName,
-      resolver
-    });
-  }
+        super({
+            rootName: resolverConfiguration.app.rootName,
+            resolver
+        });
+    }
 }

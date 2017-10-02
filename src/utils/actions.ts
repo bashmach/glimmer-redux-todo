@@ -14,14 +14,13 @@ import {
     COMPLETE_ALL,
     CLEAR_COMPLETED,
     FETCH_ALL,
-    FETCH,
     LOADING
 } from './constants/ActionTypes';
 
-export const addTodo = actionCreator<Todo>(ADD_TODO);
+export const addTodo = actionCreator<string>(ADD_TODO);
 export const deleteTodo = actionCreator<Todo>(DELETE_TODO);
 export const completeTodo = actionCreator<Todo>(COMPLETE_TODO);
-export const completeAll = actionCreator<void>(COMPLETE_ALL);
+export const completeAll = actionCreator(COMPLETE_ALL);
 
 export const fetchAll = actionCreator.async(FETCH_ALL);
 export const loading = actionCreator.async(LOADING);
@@ -31,7 +30,9 @@ export const fetch = bindThunkAction(fetchAll, async (params, dispatch) => {
 
     await new Promise((resolve) => {
         setTimeout(() => {
-            dispatch(loading.done({params: {}, result: {}}));
+            const todos = ['Build example todo app', 'Try Glimmer', 'Learn TypeScript'];
+
+            todos.map(text => dispatch(addTodo(text)));
 
             resolve();
         }, 1000);

@@ -6,6 +6,5 @@ export const COMPLETE_ALL = 'COMPLETE_ALL';
 export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 export const FETCH_ALL = 'FETCH_ALL';
 export const LOADING = 'LOADING';
-export const FETCH = 'FETCH';
 
 export default {}

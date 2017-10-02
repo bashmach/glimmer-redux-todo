@@ -3,11 +3,11 @@ import hbs from '@glimmer/inline-precompile';
 
 const { module, test } = QUnit;
 
-module('Component: todo-input', function(hooks) {
-  setupRenderingTest(hooks);
+module('Component: todo-input', function (hooks) {
+    setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    await this.render(hbs`<todo-input />`);
-    assert.ok(this.containerElement.querySelector('input'));
-  });
+    test('it renders', async function (assert) {
+        await this.render(hbs`<todo-input />`);
+        assert.ok(this.containerElement.querySelector('input'));
+    });
 });

@@ -1,4 +1,4 @@
-type Todo = {
+export type Todo = {
     id?: number;
     text: string;
     isDone: boolean;
@@ -6,7 +6,7 @@ type Todo = {
 
 export default Todo;
 
-export type IState = {
+export type AppState = {
     todos: Todo[],
     isLoading: boolean
 };
