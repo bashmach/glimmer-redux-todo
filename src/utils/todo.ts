@@ -1,5 +1,3 @@
-import { tracked } from "@glimmer/component";
-
 type Todo = {
     id?: number;
     text: string;
@@ -8,4 +6,7 @@ type Todo = {
 
 export default Todo;
 
-export type IState = Todo[];
+export type IState = {
+    todos: Todo[],
+    isLoading: boolean
+};

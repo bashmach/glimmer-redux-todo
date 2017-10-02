@@ -1,35 +1,23 @@
-import { handleActions, Action } from 'redux-actions';
 
-import Todo, { IState } from './todo';
-import { ADD_TODO, DELETE_TODO, COMPLETE_TODO, COMPLETE_ALL } from './constants/ActionTypes';
+import { Action } from 'redux-actions';
 
-export default handleActions<IState, Todo>({
-    [ADD_TODO]: (state:IState, action:Action<Todo>):IState => {
-        return [{
-            id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-            isDone: action.payload.isDone,
-            text: action.payload.text
-        }, ...state];
-    },
+import { reducerWithInitialState } from "typescript-fsa-reducers";
 
-    [DELETE_TODO]: (state: IState, action: Action<Todo>): IState => {
-        return state.filter(todo =>
-            todo.id !== action.payload.id
-        );
-    },
+import { IState } from './todo';
 
-    [COMPLETE_TODO]: (state: IState, action: Action<Todo>): IState => {
-        return <IState>state.map(todo =>
-            todo.id === action.payload.id ?
-                Object.assign({}, todo, { isDone: !todo.isDone }) :
-                todo
-        );
-    },
+import { ADD_TODO, DELETE_TODO, COMPLETE_TODO, COMPLETE_ALL, FETCH_ALL } from './constants/ActionTypes';
+import { fetchAll, loading } from './actions';
 
-    [COMPLETE_ALL]: (state: IState, action: Action<Todo>): IState => {
-        const areAllMarked = state.every(todo => todo.isDone);
-        return <IState>state.map(todo => Object.assign({}, todo, {
-            isDone: !areAllMarked
-        }));
-    },
-}, []);
+const initialState: IState = {
+    todos: [],
+    isLoading: false
+};
+
+const startLoadingHandler = (state: IState) : IState => ({ ...state, isLoading: true });
+const stopLoadingHandler = (state: IState) : IState => ({ ...state, isLoading: false });
+
+export default reducerWithInitialState(initialState)
+    .case(loading.started, startLoadingHandler)
+    .case(loading.done, stopLoadingHandler)
+    .case(loading.failed, stopLoadingHandler)
+    .build();

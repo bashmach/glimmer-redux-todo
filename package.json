@@ -22,16 +22,22 @@
     "ember-cli-sass": "^7.0.0",
     "ember-cli-uglify": "^2.0.0-beta.2",
     "github-fork-ribbon-css": "^0.2.1",
+    "isomorphic-fetch": "^2.2.1",
     "qunitjs": "^2.3.3",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
     "rollup-plugin-commonjs": "^8.2.1",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.4",
-    "typescript": "^2.5.3"
+    "typescript": "^2.5.3",
+    "typescript-fsa": "^2.5.0",
+    "typescript-fsa-reducers": "^0.4.4",
+    "typescript-fsa-redux-thunk": "^1.0.0"
   },
   "engines": {
     "node": ">= 6.10.0"

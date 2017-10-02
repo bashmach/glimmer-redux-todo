@@ -10,7 +10,7 @@ export default class TodoList extends StateComponent {
   };
 
   onToggleAll(e) {
-    return store.dispatch(completeAll());
+    return store.dispatch(completeAll);
   }
 
   onDestroy(todo) {
@@ -23,6 +23,6 @@ export default class TodoList extends StateComponent {
 
   @tracked('state')
   get items() {
-    return this.state;
+    return this.state.todos;
   }
 };

@@ -6,5 +6,7 @@ module.exports = function(environment) {
     environment: environment
   };
 
+  ENV.API_BASE_URL = 'http://localhost:4000/api/';
+
   return ENV;
 };

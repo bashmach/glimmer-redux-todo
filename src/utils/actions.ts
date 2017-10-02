@@ -1,4 +1,8 @@
 import { createAction, Action } from 'redux-actions';
+import actionCreatorFactory from 'typescript-fsa';
+import { bindThunkAction } from 'typescript-fsa-redux-thunk';
+
+const actionCreator = actionCreatorFactory();
 
 import Todo from './todo';
 
@@ -8,27 +12,30 @@ import {
     EDIT_TODO,
     COMPLETE_TODO,
     COMPLETE_ALL,
-    CLEAR_COMPLETED
+    CLEAR_COMPLETED,
+    FETCH_ALL,
+    FETCH,
+    LOADING
 } from './constants/ActionTypes';
 
-export const addTodo = createAction<Todo, string>(
-    ADD_TODO,
-    (text: string) => ({ text, isDone: false })
-);
+export const addTodo = actionCreator<Todo>(ADD_TODO);
+export const deleteTodo = actionCreator<Todo>(DELETE_TODO);
+export const completeTodo = actionCreator<Todo>(COMPLETE_TODO);
+export const completeAll = actionCreator<void>(COMPLETE_ALL);
 
-export const deleteTodo = createAction<Todo, Todo>(
-    DELETE_TODO,
-    (todo: Todo) => todo
-);
+export const fetchAll = actionCreator.async(FETCH_ALL);
+export const loading = actionCreator.async(LOADING);
 
-export const completeTodo = createAction<Todo, Todo>(
-    COMPLETE_TODO,
-    (todo: Todo) => todo
-);
+export const fetch = bindThunkAction(fetchAll, async (params, dispatch) => {
+    dispatch(loading.started({}));
 
-export const completeAll = createAction<void>(
-    COMPLETE_ALL,
-    () => { }
-);
+    await new Promise((resolve) => {
+        setTimeout(() => {
+            dispatch(loading.done({params: {}, result: {}}));
 
-export default {};
+            resolve();
+        }, 1000);
+    });
+
+    return {};
+});

@@ -1,11 +1,11 @@
 import Component, { tracked } from '@glimmer/component';
 import store from '../../../utils/store';
 
-import { addTodo } from '../../../utils/actions';
-import Todo from "../../../utils/todo";
+import { fetch, loading } from '../../../utils/actions';
+import { IState } from "../../../utils/todo";
 
 export default class GlimmerTodo extends Component {
-    state: Todo[];
+    state: IState;
 
     constructor(options: object) {
         super(options);
@@ -14,8 +14,6 @@ export default class GlimmerTodo extends Component {
             this.state = store.getState();
         });
 
-        ["Learn TypeScript", "Try Glimmer", "Build example todo app"].map(item => {
-            return store.dispatch(addTodo(item));
-        });
+        store.dispatch(fetch({}));
     }
 };
