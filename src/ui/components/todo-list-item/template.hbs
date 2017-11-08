@@ -1,7 +1,0 @@
-<li class={{if @isDone "view completed" "view"}}>
-  <input type="checkbox" class="toggle" checked={{@isDone}} onchange={{action @onToggle}}>
-
-  <label>{{@text}}</label>
-
-  <button class="destroy" onclick={{action @onDestroy}}></button>
-</li>

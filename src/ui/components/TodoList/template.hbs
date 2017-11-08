@@ -1,0 +1,22 @@
+<div>
+
+  <header>
+    <TodoInput @status="new" @onSubmit={{action addTodo}} />
+  </header>
+
+  <section class="main">
+    <input type="checkbox" id="toggle-all" class="toggle-all" onchange={{action completeAll }}>
+    <label for="toggle-all">Mark all as complete</label>
+
+    <ul class="todo-list">
+      {{#each todos key="@index" as |item|}}
+        <TodoListItem
+          @text={{item.text}}
+          @isCompleted={{item.isCompleted}}
+          @onToggle={{action completeTodo item.id}}
+          @onDestroy={{action deleteTodo item.id}}
+        />
+      {{/each}}
+    </ul>
+  </section>
+</div>

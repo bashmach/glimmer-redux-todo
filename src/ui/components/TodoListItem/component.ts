@@ -4,7 +4,7 @@ export default class TodoListItem extends Component {
     args: {
         id: number;
         text: string;
-        isDone: boolean;
+        isCompleted: boolean;
         onToggle: (any) => void;
     };
 };
