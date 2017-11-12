@@ -1,22 +1,24 @@
-import Component, { tracked } from '@glimmer/component';
+import Component from '@glimmer/component';
+
+class Layout extends Component {}
+
 
 import { connect } from 'glimmer-redux';
 import { getTodos, getFilter, getTodosCount } from '../../../reducers/todos';
 
-const editTodo = (id, text) => dispatch => dispatch({type: 'EDIT_TODO', id, text});
-const addTodo = text => dispatch => dispatch({type: 'ADD_TODO', text});
-const deleteTodo = id => dispatch => dispatch({type: 'DELETE_TODO', id});
-const completeTodo = id => dispatch => dispatch({type: 'COMPLETE_TODO', id});
+const load = () => async (dispatch) => {
+  dispatch({type: 'LOADING'});
 
-const showAll = () => dispatch => dispatch({type: 'SHOW_ALL'});
-const showActive = () => dispatch => dispatch({type: 'SHOW_ACTIVE'});
-const showCompleted = () => dispatch => dispatch({type: 'SHOW_COMPLETED'});
+  const todos = await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(['Build example todo app', 'Try Glimmer', 'Learn TypeScript']);
+    }, 1000);
+  });
 
-class Layout extends Component {
-    constructor(options: object) {
-        super(options);
-    }
-}
+  todos.map(text => dispatch({type: 'ADD_TODO', text}));
+
+  return dispatch({type: 'FETCH_ALL'});
+};
 
 const stateToComputed = state => ({
   todos: getTodos(state),
@@ -25,13 +27,7 @@ const stateToComputed = state => ({
 });
 
 const dispatchToActions = {
-  addTodo,
-  deleteTodo,
-  editTodo,
-  completeTodo,
-  showAll,
-  showActive,
-  showCompleted
+  load
 };
 
 export default connect(stateToComputed, dispatchToActions)(Layout);

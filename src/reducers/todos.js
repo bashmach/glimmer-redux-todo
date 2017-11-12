@@ -18,29 +18,28 @@ import { createSelector } from 'reselect';
 
 const initialState = {
   filter: undefined,
-  all: [
-    {
-      id: 1,
-      text: 'Build example todo app',
-      isCompleted: false
-    },
-    {
-      id: 2,
-      text: 'Try Glimmer',
-      isCompleted: false
-    },
-    {
-      id: 3,
-      text: 'Learn TypeScript',
-      isCompleted: false
-    }
-  ]
+  isLoading: false,
+  all: []
 };
 
 export default function todos(state, action) {
   console.log('state', action.type);
 
   switch (action.type) {
+    case FETCH_ALL: {
+      return {
+        isLoading: false,
+        ...state
+      }
+    }
+
+    case LOADING: {
+      return {
+        isLoading: true,
+        ...state
+      }
+    }
+
     case COMPLETE_ALL: {
       let todos = omitBy(state.all, todo => todo.isCompleted === true);
       return {
