@@ -14,6 +14,14 @@ moduleConfiguration['collections']['reducer'] = {
   defaultType: 'reducer'
 };
 
+moduleConfiguration['types']['action'] = {
+  definitiveCollection: 'actions'
+};
+moduleConfiguration['collections']['action'] = {
+  types: ['actions/index'],
+  defaultType: 'action'
+};
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'glimmer-todo',

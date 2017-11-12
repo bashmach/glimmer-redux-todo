@@ -23,8 +23,6 @@ const initialState = {
 };
 
 export default function todos(state, action) {
-  console.log('state', action.type);
-
   switch (action.type) {
     case FETCH_ALL: {
       return {
@@ -84,8 +82,6 @@ export default function todos(state, action) {
         }, todo) : todo;
       });
 
-      console.log('todos', todos, action);
-
       return {
         ...state,
         all: {...state.all, ...todos}
@@ -96,8 +92,8 @@ export default function todos(state, action) {
       const id = Object.values(state.all).reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
       let todo = {
         [id]: {
-          id: id,
-          isCompleted: false,
+          id: action.id || id,
+          isCompleted: action.isCompleted || false,
           text: action.text
         }
       };

@@ -1,12 +1,7 @@
 export type Todo = {
     id?: number;
     text: string;
-    isDone: boolean;
+    isCompleted: boolean;
 };
 
 export default Todo;
-
-export type AppState = {
-    todos: Todo[],
-    isLoading: boolean
-};
