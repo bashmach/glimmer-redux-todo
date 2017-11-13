@@ -26,7 +26,6 @@
     "github-fork-ribbon-css": "^0.2.1",
     "glimmer-redux": "^0.1.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash-es": "^4.17.4",
     "qunitjs": "^2.3.3",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
