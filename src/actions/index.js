@@ -1,8 +1,11 @@
+import { CLEAR_COMPLETED } from "../utils/constants/ActionTypes";
+
 export const addTodo = text => dispatch => dispatch({type: 'ADD_TODO', text});
 export const editTodo = (id, text) => dispatch => dispatch({type: 'EDIT_TODO', id, text});
 export const deleteTodo = id => dispatch => dispatch({type: 'DELETE_TODO', id});
 export const completeTodo = id => dispatch => dispatch({type: 'COMPLETE_TODO', id});
 export const completeAll = () => dispatch => dispatch({type: 'COMPLETE_ALL'});
+export const clearCompleted = () => dispatch => dispatch({type: 'CLEAR_COMPLETED'});
 
 export const showAll = () => dispatch => dispatch({type: 'SHOW_ALL'});
 export const showActive = () => dispatch => dispatch({type: 'SHOW_ACTIVE'});

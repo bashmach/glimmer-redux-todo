@@ -5,8 +5,11 @@
   </header>
 
   <section class="main">
-    <input type="checkbox" id="toggle-all" class="toggle-all" onchange={{action completeAll }}>
-    <label for="toggle-all">Mark all as complete</label>
+    <ToggleAll
+      @allCompleted={{allCompleted}}
+      @onComplete={{completeAll}}
+      @onClear={{clearCompleted}}
+    />
 
     <ul class="todo-list">
       {{#each todos key="@index" as |item|}}
