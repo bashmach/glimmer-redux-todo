@@ -10,8 +10,7 @@ export default class TodoInput extends Component {
     super(options);
 
     this.status = this.args.status || 'default';
-    this.onSubmit = this.args.onSubmit || (() => {
-    });
+    this.onSubmit = this.args.onSubmit || (() => {});
   }
 
   @tracked('status')

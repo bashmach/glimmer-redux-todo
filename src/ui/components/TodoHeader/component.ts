@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { connect } from 'glimmer-redux';
-import { getTodos, getTodosCount } from '../../../reducers/todos';
+import { getTodosCount } from '../../../reducers/todos';
 
 class TodoHeader extends Component {
 
