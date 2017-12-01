@@ -1,6 +1,6 @@
 # glimmer-todo
 
-Example of todo app written with Glimmer.
+Todo app written with Glimmer.js and Redux.
 
 [Demo link](https://glimmer-todo.herokuapp.com/)
 
