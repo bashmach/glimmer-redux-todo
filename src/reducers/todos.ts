@@ -79,10 +79,10 @@ export default function todos(state, action) {
     }
 
     case ADD_TODO: {
-      const id = Object.values(state.all).reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
+      const maxId = Math.max(...state.all.map(todo => todo.id)) || 0;
 
       let todo = {
-        id: action.id || id,
+        id: action.id || maxId + 1,
         isCompleted: action.isCompleted || false,
         text: action.text
       };
