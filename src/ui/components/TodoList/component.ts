@@ -1,7 +1,9 @@
 import Component from '@glimmer/component';
 import { connect } from 'glimmer-redux';
 import { getTodos, getFilter, getTodosCount, getCompletedCount } from '../../../reducers/todos';
-import { addTodo,
+import {
+  addTodo,
+  editTodo,
   deleteTodo,
   completeTodo,
   completeAll,
@@ -24,6 +26,7 @@ const stateToComputed = state => ({
 
 const dispatchToActions = {
   addTodo,
+  editTodo,
   deleteTodo,
   completeTodo,
   completeAll,

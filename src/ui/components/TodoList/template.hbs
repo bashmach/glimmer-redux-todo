@@ -19,6 +19,7 @@
           @isCompleted={{item.isCompleted}}
           @onToggle={{action completeTodo item.id}}
           @onDestroy={{action deleteTodo item.id}}
+          @onEdit={{action editTodo}}
         />
       {{/each}}
     </ul>

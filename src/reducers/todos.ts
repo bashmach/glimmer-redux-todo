@@ -125,5 +125,5 @@ export const getAllTodosCount = createSelector(all, (all) => all.length);
 export const getFilter = createSelector(filter, filter => filter);
 export const getTodosCount = createSelector(getTodos, (todos) => todos.length);
 export const getCompletedCount = createSelector(all, (all) => {
-  return <Todo[]>all.filter(todo => todo.isCompleted).length;
+  return <number>all.filter(todo => todo.isCompleted).length;
 });
