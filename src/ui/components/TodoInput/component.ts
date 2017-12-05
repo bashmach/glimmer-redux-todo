@@ -2,48 +2,62 @@ import Component, { tracked } from '@glimmer/component';
 import { ENTER } from '../../../utils/constants/KeyCodes';
 
 export default class TodoInput extends Component {
-  @tracked args: { status, onSubmit };
-  @tracked status: string;
-  onSubmit: any;
+  @tracked args: { status, text: '', onSubmit, onKeyUp, onBlur };
 
-  constructor(options) {
-    super(options);
+  bounds: {
+    firstNode: HTMLInputElement,
+    lastNode: HTMLInputElement
+  };
 
-    this.status = this.args.status || 'default';
-    this.onSubmit = this.args.onSubmit || (() => {});
-  }
-
-  @tracked('status')
-  get placeholder() {
-    if (this.status === 'new') {
-      return 'What needs to be done?';
-    }
-
-    return null;
-  }
-
-  @tracked('status')
   get className() {
-    if (this.status === 'new') {
+    if (this.args.status === 'new') {
       return 'new-todo';
     }
 
-    if (this.status === 'edit') {
+    if (this.args.status === 'edit') {
       return 'edit';
     }
 
     return null;
   }
 
-  onKeyPress(event) {
-    if (event.charCode !== ENTER) {
+  get placeholder() {
+    if (this.args.status === 'new') {
+      return 'What needs to be done?';
+    }
+
+    return null;
+  }
+
+  onKeyUp(event) {
+    if (!this.args.onKeyUp) {
       return false;
     }
 
-    const value = event.currentTarget.value.trim();
+    this.args.onKeyUp(event);
+  }
 
-    this.onSubmit(value);
+  onKeyPress(event) {
+    if (event.keyCode !== ENTER) {
+      return false;
+    }
 
-    event.currentTarget.value = '';
+    requestAnimationFrame(() => {
+      this.bounds.lastNode.value = '';
+    });
+
+    if (!this.args.onSubmit) {
+      return false;
+    }
+
+    this.args.onSubmit(event.currentTarget.value.trim());
+  }
+
+  onBlur() {
+    if (!this.args.onBlur) {
+      return false;
+    }
+
+    this.args.onBlur();
   }
 };
