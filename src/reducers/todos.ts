@@ -9,15 +9,18 @@ import {
   LOADING
 } from '../utils/constants/ActionTypes';
 
-import { createSelector } from 'reselect';
+import { Todo, AppState } from '../utils/types';
 
-const initialState = {
+import { createSelector } from 'reselect';
+import App from "../main";
+
+const initialState = <AppState>{
   filter: undefined,
   isLoading: false,
-  all: []
+  all: <Todo[]>[]
 };
 
-export default function todos(state, action) {
+export default function todos(state: AppState, action) {
   switch (action.type) {
     case FETCH_ALL: {
       return {
@@ -34,31 +37,33 @@ export default function todos(state, action) {
     }
 
     case COMPLETE_ALL: {
-      return {
+      return <AppState>{
         ...state,
-        all: state.all.map(todo => ({ ...todo, isCompleted: true }))
+        all: state.all.map((todo: Todo) => (<Todo>{ ...todo, isCompleted: true }))
       }
     }
 
     case CLEAR_COMPLETED: {
-      return {
+      return <AppState>{
         ...state,
-        all: state.all.map(todo => ({ ...todo, isCompleted: false }))
+        all: state.all.map((todo: Todo) => (<Todo>{ ...todo, isCompleted: false }))
       }
     }
 
     case DELETE_TODO: {
-      return {
+      return <AppState>{
         ...state,
-        all: state.all.filter(todo => todo.id !== action.id)
+        all: state.all.filter((todo: Todo) => todo.id !== action.id)
       }
     }
 
     case EDIT_TODO: {
-      return {
+      const id = action.id + 0;
+
+      return <AppState>{
         ...state,
-        all: state.all.map(todo => {
-          return todo.id === action.id ? {
+        all: state.all.map((todo: Todo) => {
+          return todo.id === action.id ? <Todo>{
             ...todo,
             text: action.text
           } : todo;
@@ -67,10 +72,10 @@ export default function todos(state, action) {
     }
 
     case COMPLETE_TODO: {
-      return {
+      return <AppState>{
         ...state,
-        all: state.all.map(todo => {
-          return todo.id === action.id ? {
+        all: state.all.map((todo: Todo) => {
+          return todo.id === action.id ? <Todo>{
             ...todo,
             isCompleted: !todo.isCompleted
           } : todo;
@@ -79,15 +84,19 @@ export default function todos(state, action) {
     }
 
     case ADD_TODO: {
-      const maxId = Math.max(...state.all.map(todo => todo.id)) || 0;
+      let maxId = 0;
 
-      let todo = {
+      if (state.all.length > 0) {
+          maxId = Math.max(...state.all.map(todo => todo.id));
+      }
+
+      let todo = <Todo>{
         id: action.id || maxId + 1,
         isCompleted: action.isCompleted || false,
         text: action.text
       };
 
-      return {
+      return <AppState>{
         ...state,
         all: [...state.all, todo]
       }
@@ -106,7 +115,7 @@ export const getTodos = createSelector(
   all,
   filter,
   (all, filter) => {
-    return all.filter(todo => {
+    return <Todo[]>all.filter(todo => {
       return filter === undefined ? true : filter !== todo.isCompleted;
     });
   }
@@ -115,4 +124,6 @@ export const getTodos = createSelector(
 export const getAllTodosCount = createSelector(all, (all) => all.length);
 export const getFilter = createSelector(filter, filter => filter);
 export const getTodosCount = createSelector(getTodos, (todos) => todos.length);
-export const getCompletedCount = createSelector(all, (all) => all.filter(t => t.isCompleted).length);
+export const getCompletedCount = createSelector(all, (all) => {
+  return <Todo[]>all.filter(todo => todo.isCompleted).length;
+});

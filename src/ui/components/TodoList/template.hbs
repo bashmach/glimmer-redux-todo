@@ -14,6 +14,7 @@
     <ul class="todo-list">
       {{#each todos key="@index" as |item|}}
         <TodoListItem
+          @id={{item.id}}
           @text={{item.text}}
           @isCompleted={{item.isCompleted}}
           @onToggle={{action completeTodo item.id}}
