@@ -1,0 +1,11 @@
+<footer class="footer">
+  <span class="todo-count">
+    {{itemsLeft}}
+    left
+  </span>
+  <ul class="filters">
+    <li><a href="/#/" class="{{if (eq filter 'show_all') "selected"}}">All</a></li>
+    <li><a href="/#/active" class="{{if (eq filter 'show_active') "selected"}}">Active</a></li>
+    <li><a href="/#/completed" class="{{if (eq filter 'show_completed') "selected"}}">Completed</a></li>
+  </ul>
+</footer>

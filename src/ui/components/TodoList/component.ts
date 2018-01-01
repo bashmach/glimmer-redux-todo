@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { connect } from 'glimmer-redux';
-import { getTodos, getFilter, getTodosCount, getCompletedCount } from '../../../reducers/todos';
+import { getTodos, getTodosCount, getCompletedCount } from '../../../reducers/todos';
 import {
   addTodo,
   editTodo,
@@ -20,7 +20,6 @@ class TodoList extends Component {
 
 const stateToComputed = state => ({
   todos: getTodos(state),
-  filter: getFilter(state),
   allCompleted: getTodosCount(state) - getCompletedCount(state) === 0
 });
 

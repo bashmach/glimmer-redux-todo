@@ -1,5 +1,4 @@
 <div>
-
   <header>
     <TodoInput @status="new" @onSubmit={{action addTodo}} />
   </header>
@@ -24,4 +23,6 @@
       {{/each}}
     </ul>
   </section>
+
+  <TodoFilter filter={{@routeFilter}} />
 </div>
