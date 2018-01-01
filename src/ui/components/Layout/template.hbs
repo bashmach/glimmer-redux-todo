@@ -4,7 +4,7 @@
   <section class="todoapp">
     <TodoHeader />
 
-    <TodoList @onLoad={{action fetch}} @onFilter={{action filterTodos}} />
+    <TodoList @onLoad={{action fetch}} @onFilter={{action filterTodos}} @router={{router}} />
   </section>
 
   <Footer />

@@ -1,6 +1,5 @@
 import Component, { tracked } from '@glimmer/component';
 import { connect } from 'glimmer-redux';
-import Navigo from 'navigo';
 
 import { getTodos, getTodosCount, getCompletedCount } from '../../../reducers/todos';
 import {
@@ -14,7 +13,6 @@ import {
 
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../../../utils/constants/TodoFilters";
 
-const router = new Navigo(null, true);
 
 class TodoList extends Component {
   onFilter: (filterType: string) => void;
@@ -26,7 +24,7 @@ class TodoList extends Component {
 
     this.onFilter = this.args.onFilter.bind(this);
 
-    router
+    this.args.router
       .on('/', () => {
         this.onFilter(SHOW_ALL);
       })
