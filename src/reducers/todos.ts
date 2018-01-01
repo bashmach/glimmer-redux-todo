@@ -6,16 +6,17 @@ import {
   COMPLETE_ALL,
   CLEAR_COMPLETED,
   FETCH_ALL,
-  LOADING
+  LOADING,
+  FILTER
 } from '../utils/constants/ActionTypes';
 
 import { Todo, AppState } from '../utils/types';
 
 import { createSelector } from 'reselect';
-import App from "../main";
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from "../utils/constants/TodoFilters";
 
 const initialState = <AppState>{
-  filter: undefined,
+  filter: SHOW_ALL,
   isLoading: false,
   all: <Todo[]>[]
 };
@@ -24,15 +25,31 @@ export default function todos(state: AppState, action) {
   switch (action.type) {
     case FETCH_ALL: {
       return {
-        isLoading: false,
-        ...state
+        ...state,
+        isLoading: false
       }
     }
 
     case LOADING: {
       return {
-        isLoading: true,
-        ...state
+        ...state,
+        isLoading: true
+      }
+    }
+
+    case FILTER: {
+      let filter = SHOW_ALL;
+
+      switch (action.filter) {
+        case SHOW_ACTIVE:
+        case SHOW_COMPLETED:
+          filter = action.filter;
+          break;
+      }
+
+      return {
+        ...state,
+        filter
       }
     }
 
@@ -116,7 +133,19 @@ export const getTodos = createSelector(
   filter,
   (all, filter) => {
     return <Todo[]>all.filter(todo => {
-      return filter === undefined ? true : filter !== todo.isCompleted;
+      if (filter === SHOW_ALL) {
+        return true;
+      }
+
+      if (filter === SHOW_ACTIVE) {
+        return !todo.isCompleted;
+      }
+
+      if (filter === SHOW_COMPLETED) {
+        return todo.isCompleted;
+      }
+
+      return false;
     });
   }
 );

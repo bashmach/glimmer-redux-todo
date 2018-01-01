@@ -1,18 +1,17 @@
 import Component, { tracked } from '@glimmer/component';
 import { connect } from 'glimmer-redux';
-import { getTodosCount, getCompletedCount } from '../../../reducers/todos';
+import { getFilter, getTodosCount, getCompletedCount } from '../../../reducers/todos';
+import { filterTodos } from '../../../actions';
 
-class TodoFilter extends Component {
-  @tracked('args')
-  get filter() {
-    return this.args.filter;
-  }
-}
+class TodoFilter extends Component {}
 
 const stateToComputed = state => ({
+  filter: getFilter(state),
   itemsLeft: getTodosCount(state) - getCompletedCount(state)
 });
 
-const dispatchToActions = {};
+const dispatchToActions = {
+  filterTodos
+};
 
 export default connect(stateToComputed, dispatchToActions)(TodoFilter);

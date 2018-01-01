@@ -1,6 +1,6 @@
 import {
   ADD_TODO, CLEAR_COMPLETED, COMPLETE_ALL, COMPLETE_TODO, DELETE_TODO,
-  EDIT_TODO, FETCH_ALL, LOADING
+  EDIT_TODO, FETCH_ALL, LOADING, FILTER
 } from "../utils/constants/ActionTypes";
 import { Todo, TodoAction } from "../utils/types";
 import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from "../utils/constants/TodoFilters";
@@ -12,9 +12,7 @@ export const completeTodo = (id: number) => dispatch => dispatch(<TodoAction>{ t
 export const completeAll = () => dispatch => dispatch(<TodoAction>{ type: COMPLETE_ALL });
 export const clearCompleted = () => dispatch => dispatch(<TodoAction>{ type: CLEAR_COMPLETED });
 
-export const showAll = () => dispatch => dispatch(<TodoAction>{ type: SHOW_ALL });
-export const showActive = () => dispatch => dispatch(<TodoAction>{ type: SHOW_ACTIVE });
-export const showCompleted = () => dispatch => dispatch(<TodoAction>{ type: SHOW_COMPLETED });
+export const filterTodos = (filter) => dispatch => dispatch(<TodoAction>{ type: FILTER, filter });
 
 export const fetch = () => async (dispatch) => {
   dispatch(<TodoAction>{ type: LOADING });

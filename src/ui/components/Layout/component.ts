@@ -1,19 +1,17 @@
-import Component from '@glimmer/component';
-
-class Layout extends Component {}
+import Component, { tracked } from '@glimmer/component';
 
 import { connect } from 'glimmer-redux';
-import { getTodos, getFilter, getTodosCount } from '../../../reducers/todos';
-import { fetch } from '../../../actions';
-
-const stateToComputed = state => ({
-  todos: getTodos(state),
-  filter: getFilter(state),
-  todosCount: getTodosCount(state)
-});
+import { fetch, filterTodos } from '../../../actions';
 
 const dispatchToActions = {
-  fetch
+  fetch,
+  filterTodos
 };
 
-export default connect(stateToComputed, dispatchToActions)(Layout);
+class Layout extends Component {
+  @tracked filter: string;
+}
+
+const LayoutComponent = connect(null, dispatchToActions)(Layout);
+
+export default LayoutComponent;
